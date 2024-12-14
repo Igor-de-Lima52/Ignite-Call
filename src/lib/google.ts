@@ -31,12 +31,12 @@ export async function getGoogleOAuthToken(userId: string) {
     const { credentials } = await auth.refreshAccessToken()
 
     const {
-      access_token,
-      expiry_date,
-      id_token,
-      refresh_token,
+      access_token: accessToken,
+      expiry_date: expiryDate,
+      id_token: idToken,
+      refresh_token: refreshToken,
       scope,
-      token_type,
+      token_type: tokenType,
     } = credentials
 
     await prisma.account.update({
@@ -44,19 +44,19 @@ export async function getGoogleOAuthToken(userId: string) {
         id: account!.id,
       },
       data: {
-        access_token,
-        expires_at: expiry_date ? Math.floor(expiry_date / 1000) : null,
-        id_token,
-        refresh_token,
+        access_token: accessToken,
+        expires_at: expiryDate ? Math.floor(expiryDate / 1000) : null,
+        id_token: idToken,
+        refresh_token: refreshToken,
         scope,
-        token_type,
+        token_type: tokenType,
       },
     })
 
     auth.setCredentials({
-      access_token,
-      refresh_token,
-      expiry_date,
+      access_token: accessToken,
+      refresh_token: refreshToken,
+      expiry_date: expiryDate,
     })
   }
 

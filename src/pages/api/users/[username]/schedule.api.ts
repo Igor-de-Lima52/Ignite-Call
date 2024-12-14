@@ -5,7 +5,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import dayjs from 'dayjs'
 import { google } from 'googleapis'
 import { getGoogleOAuthToken } from '@/src/lib/google'
-import { getDisplayName } from 'next/dist/shared/lib/utils'
 
 export default async function handle(
   req: NextApiRequest,

@@ -8,7 +8,6 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { api } from '@/src/lib/axios'
 import { AxiosError } from 'axios'
-import { useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 
 const registerFormSchema = z.object({
